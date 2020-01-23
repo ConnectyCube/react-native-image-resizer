@@ -13,6 +13,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.GuardedAsyncTask;
 
+import java.util.UUID;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -74,7 +75,8 @@ public class ImageResizerModule extends ReactContextBaseJavaModule {
             path = new File(outputPath);
         }
 
-        File resizedImage = ImageResizer.saveImage(scaledImage, path, Long.toString(new Date().getTime()), compressFormat, quality);
+        String resizedImageName = UUID.randomUUID().toString();
+        File resizedImage = ImageResizer.saveImage(scaledImage, path, resizedImageName, compressFormat, quality);
 
         // If resizedImagePath is empty and this wasn't caught earlier, throw.
         if (resizedImage.isFile()) {

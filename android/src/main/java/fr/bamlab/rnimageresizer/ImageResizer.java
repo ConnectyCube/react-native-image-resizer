@@ -10,6 +10,7 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -81,6 +82,8 @@ public class ImageResizer {
         if (bitmap == null) {
             throw new IOException("The bitmap couldn't be resized");
         }
+
+        Log.d("[ImageResizer]", "[saveImage]: " + fileName);
 
         File newFile = new File(saveDirectory, fileName + "." + compressFormat.name());
         if(!newFile.createNewFile()) {
